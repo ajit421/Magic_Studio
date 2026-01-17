@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Magic Studio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="main-container">
+        <header>
+            <h1>✨ Magic Studio</h1>
+            <p>Turn Photos into Anime, Ghibli, or Cyberpunk Art!</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active">🖼️ Image Generator</button>
+        </div>
+
+        <div class="control-panel">
+            <div class="drop-zone" id="image-drop-zone">
+                <p>📸 <b>Click to Upload Photo</b> (for Style Transfer)</p>
+                <span style="font-size: 0.8rem; color: #666;">Or just type a prompt below</span>
+                <img id="image-preview" class="hidden" alt="Image Preview">
+                <input type="file" id="image-file" hidden accept="image/*">
+            </div>
+
+            <textarea id="image-prompt"
+                placeholder="Or describe your image here (e.g., 'A boy standing in rain')..."></textarea>
+
+            <div class="options-row">
+                <label style="color:#aaa; font-size:0.9rem;">Choose Style:</label>
+                <select id="image-style">
+                    <option value="ghibli">Studio Ghibli (Recommended)</option>
+                    <option value="anime">Anime / Manga</option>
+                    <option value="cinematic">Cinematic Realism</option>
+                    <option value="cyberpunk">Cyberpunk Neon</option>
+                    <option value="pixel">Pixel Art</option>
+                    <option value="none">No Style</option>
+                </select>
+            </div>
+
+            <button class="generate-btn" onclick="generateImage()">✨ Magic Transform</button>
+        </div>
+
+        <div id="loading" class="hidden">
+            <div class="spinner"></div>
+            <p>Analyzing image & painting... <span id="loading-text">Please wait</span></p>
+        </div>
+
+        <div id="result-area" class="hidden">
+            <div class="comparison-container">
+                <div class="result-box">
+                    <h4>Original</h4>
+                    <div id="original-image-container"></div>
+                </div>
+                <div class="result-box">
+                    <h4>AI Result</h4>
+                    <div id="generated-result-container"></div>
+                    <a id="download-btn" class="download-btn hidden" download="magic_result.png">⬇️ Download</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
